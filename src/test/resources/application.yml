@@ -1,0 +1,30 @@
+server :
+  port : 23123
+
+spring :
+#  datasource :
+#    driver-class-name : com.mysql.cj.jdbc.Driver
+#    url : jdbc:mysql://db-cluster-1.cluster-ro-cvhih4shqh6y.ap-northeast-2.rds.amazonaws.com:3306/ddex
+#    username : hwannee
+#    password : item0906
+  # H2 Database 설정
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: 'jdbc:h2:mem:testDb'   # H2 DB 연결 주소 (In-Memory Mode)
+    username: admin        # H2 DB 접속 ID (사용자 지정)
+    password: 1234        # H2 DB 접속 PW (사용자 지정)
+
+  # H2 Console 설정
+  h2:
+    console: # H2 DB를 웹에서 관리할 수 있는 기능
+      enabled: true           # H2 Console 사용 여부
+      path: /h2-console       # H2 Console 접속 주소
+
+    # 스프링부트 애플리케이션에서 데이터베이스와 상호작용하는 방법을 정의하는데 사용함
+    jpa:
+      hibernate:
+        ddl-auto: create-drop
+      show-sql: true
+      properties:
+        hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+      format-sql: true

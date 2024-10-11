@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.0'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'hwannee.project'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+/*
+implementation : 프로젝트 코드가 컴파일 시점과 런타임에 모두 해당 라이브러리를 필요로 할 때
+testImplementation : 프로젝트의 테스트 코드를 컴파일하고 실행할 때만 필요한 의존성을 설정 ( 테스트 코드에서만 사용 )
+runtimeOnly : 런타임에만 필요한 의존성을 지정, 컴파일 시에는 필요하지 않지만, 애플리케이션 실행 시 필요
+compileOnly : 컴파일 시에만 필요
+annotationProcessor : 컴파일 시에 에너테이션을 처리할 때 사용하는 도구와 의존성 지정
+ */
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // 스프링 데이터 JPA
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    testImplementation 'com.h2database:h2' // 인메모리 데이터베이스
+    compileOnly 'org.projectlombok:lombok'  // 롬복
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // 스프링 시큐리티
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // JWT 라이브러리
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    // JWE 를 위한 NimbusJose 라이브러리
+    implementation 'com.nimbusds:nimbus-jose-jwt:9.21.1'
+    // XML 문서와 Java 객체간 매핑 자동화
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
+    // MySQL
+    implementation 'mysql:mysql-connector-java:8.0.33'
+    // 생쿼리 실행
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    // S3
+    implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+
+}
+
+test {
+    useJUnitPlatform()
+}
